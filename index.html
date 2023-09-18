@@ -22,7 +22,19 @@
       </div>
     </header>
     <main class="container">
-      <div data-view="entry-form"></div>
+      <div data-view="entry-form">
+        <h2>New Entry</h2>
+        <form action="" method="get">
+          <img id="image" src="images/placeholder-image-square.jpg" />
+          <p><label for="title">Title</label></p>
+          <input type="text" id="name" required />
+          <p><label for="photoURL">Photo URL</label></p>
+          <input type="url" id="url" required />
+          <p><label for="text"></label>Notes</p>
+          <textarea cols="98" rows="3" id="notes" required></textarea>
+          <p><input type="submit" value="save" /></p>
+        </form>
+      </div>
       <div data-view="entries" class="hidden"></div>
     </main>
     <script src="js/data.js"></script>
