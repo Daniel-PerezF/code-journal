@@ -15,6 +15,6 @@ $form.addEventListener('submit', function (event) {
     photoUrl: $form.elements.url.value,
     notes: $form.elements.notes.value,
   };
+  data.nextEntryId++;
   return obj;
-  //  console.log(obj);
 });
