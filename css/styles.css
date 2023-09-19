@@ -9,7 +9,7 @@ header {
   font-size: 1rem;
 }
 
-.column-full > h1 {
+.row > h1 {
   font-size: 1.8rem;
 }
 
@@ -34,7 +34,7 @@ header {
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
   margin-bottom: 0.5rem;
 }
 
