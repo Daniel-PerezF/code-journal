@@ -52,9 +52,14 @@ function renderEntry(entry) {
   return $li;
 }
 
+const $emptyMes = document.querySelector('.not-hidden');
+
 document.addEventListener('DOMContentLoaded', function (event) {
   for (let i = 0; i < data.entries.length; i++) {
     const newLi = renderEntry(data.entries[i]);
     $ul.append(newLi);
+    if (data.entries !== null) {
+      $emptyMes.setAttribute('class', 'hidden');
+    }
   }
 });
