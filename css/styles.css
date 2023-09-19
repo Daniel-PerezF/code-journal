@@ -60,3 +60,15 @@ form {
   display: flex;
   justify-content: right;
 }
+
+/* Entries Page */
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+li > img {
+  width: 100%;
+}
