@@ -46,8 +46,20 @@ function renderEntry(entry) {
   $div2.setAttribute('class', 'column-half');
   $li.append($div2);
 
+  const $rowDiv = document.createElement('div');
+  $rowDiv.setAttribute('class', 'row');
+  $div2.append($rowDiv);
+
+  const $div3 = document.createElement('div');
+  $div3.setAttribute('class', 'pencil-column');
+  $rowDiv.append($div3);
+
   const $title = document.createElement('h3');
-  $div2.append($title);
+  const $pencil = document.createElement('i');
+  $pencil.setAttribute('class', 'fa fa-pencil');
+  $pencil.setAttribute('aria-hidden', 'true');
+  $div3.append($title);
+  $div3.append($pencil);
   $title.textContent = entry.title;
 
   const $notes = document.createElement('p');

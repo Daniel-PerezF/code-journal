@@ -116,3 +116,14 @@ li > img {
   width: 100%;
   justify-content: center;
 }
+
+/* Edit Entries */
+i {
+  padding-top: 1rem;
+}
+
+.pencil-column {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
