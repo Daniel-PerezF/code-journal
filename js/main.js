@@ -21,10 +21,8 @@ $form.addEventListener('submit', function (event) {
   data.nextEntryId++;
   $form.reset();
   $ul.prepend(renderEntry(obj));
+  toggleNoEntries();
 
-  if (data.entries.length > 0) {
-    toggleNoEntries();
-  }
   viewSwap('entries');
 });
 
@@ -41,6 +39,7 @@ function renderEntry(entry) {
 
   const $img = document.createElement('img');
   $img.setAttribute('src', entry.photoUrl);
+  $img.alt = 'User input image';
   $div.append($img);
 
   const $div2 = document.createElement('div');
@@ -60,13 +59,11 @@ function renderEntry(entry) {
 
 document.addEventListener('DOMContentLoaded', function (event) {
   for (let i = 0; i < data.entries.length; i++) {
-    const newLi = renderEntry(data.entries[i]);
-    $ul.append(newLi);
+    const $newLi = renderEntry(data.entries[i]);
+    $ul.append($newLi);
   }
-  viewSwap('entry-form');
-  if (data.entries.length > 0) {
-    toggleNoEntries();
-  }
+  viewSwap(data.view);
+  toggleNoEntries();
 });
 
 function toggleNoEntries() {
