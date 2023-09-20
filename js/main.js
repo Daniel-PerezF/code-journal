@@ -26,7 +26,13 @@ $form.addEventListener('submit', function (event) {
   viewSwap('entries');
 });
 
-const $ul = document.querySelector('ul');
+// const $ul = document.querySelector('ul');
+// const $pencilIcon = document.querySelector("i");
+// $ul.addEventListener("click", function(event){
+//   if(event.target.value === $pencilIcon){
+//     console.log("test");
+//   }
+// })
 
 function renderEntry(entry) {
   const $li = document.createElement('li');
@@ -59,6 +65,7 @@ function renderEntry(entry) {
   const $pencil = document.createElement('i');
   $pencil.setAttribute('class', 'fa fa-pencil');
   $pencil.setAttribute('aria-hidden', 'true');
+  $pencil.setAttribute('id', 'pencil');
   $div3.append($title);
   $div3.append($pencil);
   $title.textContent = entry.title;
@@ -69,6 +76,13 @@ function renderEntry(entry) {
 
   return $li;
 }
+
+const $ul = document.querySelector('ul');
+$ul.addEventListener('click', function (event) {
+  if (event.target.tagName === 'I') {
+    viewSwap('entry-form');
+  }
+});
 
 document.addEventListener('DOMContentLoaded', function (event) {
   for (let i = 0; i < data.entries.length; i++) {

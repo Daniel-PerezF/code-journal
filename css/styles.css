@@ -120,6 +120,11 @@ li > img {
 /* Edit Entries */
 i {
   padding-top: 1rem;
+  cursor: pointer;
+}
+
+i:hover {
+  color: red;
 }
 
 .pencil-column {
