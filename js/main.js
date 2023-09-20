@@ -31,6 +31,7 @@ const $ul = document.querySelector('ul');
 function renderEntry(entry) {
   const $li = document.createElement('li');
   $li.setAttribute('class', 'row');
+  $li.setAttribute('data-entry-id', entry.entryId);
   $ul.append($li);
 
   const $div = document.createElement('div');
