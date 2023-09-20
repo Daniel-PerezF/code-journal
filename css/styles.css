@@ -89,6 +89,10 @@ li > img {
   cursor: pointer;
 }
 
+.new:hover {
+  box-shadow: 2px 2px 5px #66319c;
+}
+
 .column-new-entry {
   display: flex;
   justify-content: space-between;

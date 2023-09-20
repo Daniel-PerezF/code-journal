@@ -63,6 +63,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
     const newLi = renderEntry(data.entries[i]);
     $ul.append(newLi);
   }
+  viewSwap('entry-form');
+  if (data.entries.length > 0) {
+    toggleNoEntries();
+  }
 });
 
 function toggleNoEntries() {
