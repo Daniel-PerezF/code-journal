@@ -72,3 +72,25 @@ ul {
 li > img {
   width: 100%;
 }
+
+.row > h3 {
+  padding-left: 2.2rem;
+  padding-top: 0.5rem;
+  cursor: pointer;
+}
+
+.new {
+  background-color: #4c2474;
+  border: 1px solid#4c2474;
+  border-radius: 0.2rem;
+  padding: 0.3rem 0.5rem;
+  color: #fff;
+  font-size: 0.98rem;
+  cursor: pointer;
+}
+
+.column-new-entry {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

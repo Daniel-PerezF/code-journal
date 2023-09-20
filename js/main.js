@@ -20,6 +20,12 @@ $form.addEventListener('submit', function (event) {
   $img.setAttribute('src', './images/placeholder-image-square.jpg');
   data.nextEntryId++;
   $form.reset();
+  $ul.prepend(renderEntry(obj));
+
+  if (data.entries.length > 0) {
+    toggleNoEntries();
+  }
+  viewSwap('entries');
 });
 
 const $ul = document.querySelector('ul');
@@ -52,14 +58,48 @@ function renderEntry(entry) {
   return $li;
 }
 
-const $emptyMes = document.querySelector('.not-hidden');
-
 document.addEventListener('DOMContentLoaded', function (event) {
   for (let i = 0; i < data.entries.length; i++) {
     const newLi = renderEntry(data.entries[i]);
     $ul.append(newLi);
-    if (data.entries !== null) {
-      $emptyMes.setAttribute('class', 'hidden');
-    }
+  }
+});
+
+function toggleNoEntries() {
+  if (data.entries.length > 0) {
+    $emptyMes.setAttribute('class', 'hidden no-entry-text');
+  } else {
+    $emptyMes.setAttribute('class', 'no-entry-text');
+  }
+}
+
+const $emptyMes = document.querySelector('.no-entry-text');
+
+const $entries = document.querySelector('#entries');
+const $entryForm = document.querySelector('#entry-form');
+
+function viewSwap(view) {
+  if (view === 'entries') {
+    data.view = 'entries';
+    $entries.setAttribute('class', '');
+    $entryForm.setAttribute('class', 'hidden');
+  } else if (view === 'entry-form') {
+    data.view = 'entry-form';
+    $entryForm.setAttribute('class', '');
+    $entries.setAttribute('class', 'hidden');
+  }
+}
+
+const $entriesTab = document.querySelector('#entries-tab');
+$entriesTab.addEventListener('click', function (event) {
+  if (event.target === $entriesTab) {
+    viewSwap('entries');
+  }
+});
+
+const $newEntry = document.querySelector('.new');
+$newEntry.addEventListener('click', function (event) {
+  if (event.target === $newEntry) {
+    viewSwap('entry-form');
   }
 });
