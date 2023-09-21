@@ -121,11 +121,11 @@ li > img {
 i {
   padding-top: 1rem;
   cursor: pointer;
+  transition: 0.35s ease;
 }
 
 i:hover {
   color: red;
-  transition: 0.35s ease;
 }
 
 .pencil-column {
