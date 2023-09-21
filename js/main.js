@@ -8,21 +8,34 @@ $url.addEventListener('input', function (event) {
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
-
   const obj = {
     entryId: data.nextEntryId,
     title: $form.elements.title.value,
     photoUrl: $form.elements.url.value,
     notes: $form.elements.notes.value,
   };
+  if (data.editing === null) {
+    data.entries.unshift(obj);
+    data.nextEntryId++;
 
-  data.entries.unshift(obj);
-  $img.setAttribute('src', './images/placeholder-image-square.jpg');
-  data.nextEntryId++;
+    $ul.prepend(renderEntry(obj));
+  } else {
+    const $allLi = document.querySelectorAll('li');
+
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.editing.entryId === data.entries[i].entryId) {
+        data.entries[i].title = $form.elements.title.value;
+        data.entries[i].photoUrl = $form.elements.url.value;
+        data.entries[i].notes = $form.elements.notes.value;
+        $allLi[i].replaceWith(renderEntry(data.entries[i]));
+      }
+    }
+  }
   $form.reset();
-  $ul.prepend(renderEntry(obj));
-  toggleNoEntries();
+  data.editing = null;
   viewSwap('entries');
+  toggleNoEntries();
+  $img.setAttribute('src', './images/placeholder-image-square.jpg');
 });
 
 function renderEntry(entry) {
@@ -77,19 +90,20 @@ const $editEntry = document.querySelector('#edit-entry');
 $ul.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
     viewSwap('entry-form');
-
-    const $dataId = Number(
+    const dataId = Number(
       event.target.closest('li').getAttribute('data-entry-id')
     );
     for (let i = 0; i < data.entries.length; i++) {
-      if (data.entries[i].entryId === $dataId) {
+      if (data.entries[i].entryId === dataId) {
         data.editing = data.entries[i];
+
+        $editEntry.textContent = 'Edit Entry';
+        $title.value = data.editing.title;
+        $url.value = data.editing.photoUrl;
+        $notes.value = data.editing.notes;
+        $entryImg.setAttribute('src', data.editing.photoUrl);
+        $editEntry.textContent = 'Edit Entry';
       }
-      $title.setAttribute('value', data.editing.title);
-      $url.setAttribute('value', data.editing.photoUrl);
-      $notes.textContent = data.editing.notes;
-      $entryImg.setAttribute('src', data.editing.photoUrl);
-      $editEntry.textContent = 'Edit Entry';
     }
   }
 });
@@ -112,7 +126,6 @@ function toggleNoEntries() {
 }
 
 const $emptyMes = document.querySelector('.no-entry-text');
-
 const $entries = document.querySelector('#entries');
 const $entryForm = document.querySelector('#entry-form');
 
@@ -132,12 +145,14 @@ const $entriesTab = document.querySelector('#entries-tab');
 $entriesTab.addEventListener('click', function (event) {
   if (event.target === $entriesTab) {
     viewSwap('entries');
+    $form.reset();
   }
 });
 
 const $newEntry = document.querySelector('.new');
 $newEntry.addEventListener('click', function (event) {
-  if (event.target === $newEntry) {
-    viewSwap('entry-form');
-  }
+  $form.reset();
+  $editEntry.textContent = 'New Entry';
+  $img.setAttribute('src', './images/placeholder-image-square.jpg');
+  viewSwap('entry-form');
 });
