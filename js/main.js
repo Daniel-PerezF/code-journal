@@ -86,17 +86,32 @@ const $title = document.querySelector('#title');
 const $notes = document.querySelector('#notes');
 const $entryImg = document.querySelector('#entry-image');
 const $editEntry = document.querySelector('#edit-entry');
+// const $save = document.querySelector("#save");
+const $delete = document.querySelector('#delete');
+const $hdnCol = document.querySelector('.hidden-column');
+$delete.addEventListener('click', function (event) {
+  $hdnCol.style.display = 'inline-block';
+});
+
+const $cancel = document.querySelector('#cancel');
+$cancel.addEventListener('click', function (event) {
+  $hdnCol.style.display = 'none';
+});
+
+const $confirm = document.querySelector('#confirm');
+$confirm.addEventListener('click', function (event) {});
 
 $ul.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
+    $delete.style.visibility = 'visible';
     viewSwap('entry-form');
     const dataId = Number(
       event.target.closest('li').getAttribute('data-entry-id')
     );
+
     for (let i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === dataId) {
         data.editing = data.entries[i];
-
         $editEntry.textContent = 'Edit Entry';
         $title.value = data.editing.title;
         $url.value = data.editing.photoUrl;
@@ -154,5 +169,6 @@ $newEntry.addEventListener('click', function (event) {
   $form.reset();
   $editEntry.textContent = 'New Entry';
   $img.setAttribute('src', './images/placeholder-image-square.jpg');
+  $delete.style.visibility = 'hidden';
   viewSwap('entry-form');
 });

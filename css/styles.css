@@ -58,7 +58,7 @@ form {
 
 .column-button {
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
 }
 
 /* Entries Page */
@@ -132,4 +132,87 @@ i:hover {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+/* Delete Entry */
+
+.container2 {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 1px;
+  right: 1px;
+}
+
+#delete {
+  color: #f75a5a;
+  border: none;
+  text-decoration: red underline;
+  visibility: hidden;
+  transition: 0.25s ease;
+}
+
+#delete:hover {
+  color: #f00;
+  cursor: pointer;
+}
+
+.hidden-column {
+  width: 100%;
+  justify-content: center;
+  border: 0.1rem solid #eae8e8;
+  display: none;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.modal {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: ;
+  font-size: 1.16rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.modal-button {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+#cancel {
+  border: none;
+  background-color: #b6b6b6;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  padding: 0.4rem 0.7rem;
+  margin-right: 8rem;
+}
+
+#cancel:hover {
+  box-shadow: 2px 2px 5px #bab8b8;
+  cursor: pointer;
+}
+
+#confirm {
+  color: white;
+  background-color: #dc2626;
+  border: none;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  padding: 0.4rem 0.7rem;
+}
+
+#confirm:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #f93636;
 }
