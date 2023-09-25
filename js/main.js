@@ -5,6 +5,7 @@ const $form = document.querySelector('form');
 $url.addEventListener('input', function (event) {
   $img.setAttribute('src', event.target.value);
 });
+// const $allLi = document.querySelectorAll('li');
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -86,17 +87,50 @@ const $title = document.querySelector('#title');
 const $notes = document.querySelector('#notes');
 const $entryImg = document.querySelector('#entry-image');
 const $editEntry = document.querySelector('#edit-entry');
+// const $save = document.querySelector("#save");
+const $delete = document.querySelector('#delete');
+const $hdnCol = document.querySelector('.hidden-column');
+$delete.addEventListener('click', function (event) {
+  $hdnCol.style.display = 'inline-block';
+  $container2.setAttribute('class', 'container2');
+});
+
+const $cancel = document.querySelector('#cancel');
+const $container2 = document.querySelector('.container2');
+$cancel.addEventListener('click', function (event) {
+  $hdnCol.style.display = 'none';
+  $container2.setAttribute('class', 'hidden');
+});
+
+const $confirm = document.querySelector('#confirm');
+$confirm.addEventListener('click', function (event) {
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.editing.entryId === data.entries[i].entryId) {
+      data.entries.splice(i, 1);
+      const $allLi = document.querySelectorAll('li');
+
+      $allLi[i].remove(data.entries[i]);
+      viewSwap('entries');
+      toggleNoEntries();
+      $hdnCol.style.display = 'none';
+      $container2.setAttribute('class', 'hidden');
+      $form.reset();
+      data.editing = null;
+    }
+  }
+});
 
 $ul.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
+    $delete.style.visibility = 'visible';
     viewSwap('entry-form');
     const dataId = Number(
       event.target.closest('li').getAttribute('data-entry-id')
     );
+
     for (let i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === dataId) {
         data.editing = data.entries[i];
-
         $editEntry.textContent = 'Edit Entry';
         $title.value = data.editing.title;
         $url.value = data.editing.photoUrl;
@@ -154,5 +188,6 @@ $newEntry.addEventListener('click', function (event) {
   $form.reset();
   $editEntry.textContent = 'New Entry';
   $img.setAttribute('src', './images/placeholder-image-square.jpg');
+  $delete.style.visibility = 'hidden';
   viewSwap('entry-form');
 });
